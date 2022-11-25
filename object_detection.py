@@ -9,9 +9,7 @@ def closing(img, kernel, iter_e, iter_d):
     return cv2.erode(cv2.dilate(img, kernel, iterations=iter_d), kernel, iterations=iter_e)
 
 def pooling3(img, i, j):
-    return np.array([[img[i-1, j-1], img[i-1, j], img[i-1, j+1]],
-                    [img[i, j-1], img[i, j], img[i, j+1]],
-                    [img[i+1, j-1], img[i+1, j], img[i+1, j+1]]]).flatten()
+    return img[i-1:i+1,j-1:j+1].flatten()
 
 def dkl(var1, var2):
     return (1/2) * ((var2**2 / var1**2) + (var1**2 / var2**2))
